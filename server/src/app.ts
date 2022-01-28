@@ -1,0 +1,73 @@
+import express, { Request, Response, NextFunction } from "express";
+import { json } from "body-parser";
+import "express-async-errors";
+import CreateError from "http-errors";
+import cookieSession from "cookie-session";
+// import * as dotenv from "dotenv";
+import "dotenv/config";
+
+//  local modules
+import { NotFoundError } from "./errors/not-found-error";
+import { errorHandler } from "./middlewares/error-handler";
+import cookieParser from "cookie-parser";
+
+// Routers path
+import {
+  signinRouter,
+  signoutRouter,
+  signupRouter,
+  currentUserRouter,
+} from "./routes/auth";
+import {
+  newDeviceRouter,
+  fetchDeviceRouter,
+  fetchByIdDeviceRouter,
+  checkoutRouter,
+  removeDeviceRouter,
+} from "./routes/devices";
+
+const app = express();
+
+// app.set("trust proxy", true);
+app.use(json());
+app.use(cookieParser());
+app.set("trust proxy", 1); // trust first proxy
+app.use(
+  cookieSession({
+    name: "deviceSession",
+    signed: false,
+    secure: process.env.NODE_ENV !== "test",
+  })
+);
+
+app.get("/", (req, res) => {
+  res.send("hello");
+});
+
+//-------------Router endpoints
+// Auth endpoints
+app.use(signinRouter);
+app.use(signupRouter);
+app.use(signoutRouter);
+app.use(currentUserRouter);
+
+//  Devices endpoints
+app.use(newDeviceRouter);
+app.use(fetchDeviceRouter);
+app.use(fetchByIdDeviceRouter);
+app.use(checkoutRouter);
+app.use(removeDeviceRouter);
+
+// ----------  Unknown route handler
+app.all("*", async (req, res) => {
+  throw new NotFoundError();
+});
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(CreateError(404));
+});
+// error handler
+app.use(errorHandler);
+
+export { app };
