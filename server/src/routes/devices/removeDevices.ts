@@ -15,6 +15,11 @@ router.delete(
     if (!device) {
       throw new NotFoundError();
     }
+    if (device.isCheckedOut === false) {
+      throw new BadRequestError(
+        "User currently checked-in through this device"
+      );
+    }
     device.remove({ _id: req.params.id });
     //   await device.save();
     res.json({ message: "Device deleted successfully" });

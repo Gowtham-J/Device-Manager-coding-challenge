@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import { IGetUserAuthInfoRequest } from "../helpers/definitionFIle";
 
 interface UserPayload {
   id: string;
@@ -22,19 +23,17 @@ export const currentUser = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.cookies?.jwt) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
     return next();
   }
-
   try {
-    const payload = jwt.verify(
-      req.cookies.jwt,
-      process.env.JWT_KEY!
-    ) as UserPayload;
-    req.currentUser = payload;
+    const token = authHeader.split(" ")[1];
+
+    const payLoad = jwt.verify(token, process.env.JWT_KEY!) as UserPayload;
+    req.currentUser = payLoad;
   } catch (error) {
     console.log(error);
   }
-
   next();
 };
