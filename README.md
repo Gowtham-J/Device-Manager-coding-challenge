@@ -34,6 +34,16 @@ Start the server
 
 ## Features
 
+### Sign-Up
+
+- The sign up page
+  ![App Screenshot](client/src/assets/screenshots/signup.png)
+
+### Login
+
+- The login page
+  ![App Screenshot](client/src/assets/screenshots/login.png)
+
 ### List of devices available
 
 - which is visible in the device logs as shown below on a table with many properties
@@ -81,3 +91,7 @@ Start the server
 ### Limited device allowance
 
 - The application only allows a limited device up to 10 devices only where cannot be added no more
+
+### Log Out
+
+Which will be directed to a login page
