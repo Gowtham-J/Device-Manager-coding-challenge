@@ -7,7 +7,6 @@ import { Box, Button, Typography, Container } from "@mui/material";
 import { MotionContainer, varBounceIn } from "../components/animate";
 import Page from "../components/page/Page";
 import { ReactComponent as Img404 } from "../assets/images/404.svg";
-// import { ReactComponent as DashboardPageImage } from "../../assets/images/dashboardPage.svg";
 
 // ----------------------------------------------------------------------
 

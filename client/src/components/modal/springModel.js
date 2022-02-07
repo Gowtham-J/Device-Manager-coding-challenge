@@ -24,7 +24,6 @@ export default function SpringModal({
   deviceId,
   setDevices,
   setAlertOpen,
-  alertOpen,
   setMessage,
 }) {
   const handleClose = () => setOpen(false);
@@ -59,7 +58,6 @@ export default function SpringModal({
         setAlertOpen(true);
         setDevices(response.data);
       }
-      console.log(deleteDevice.data.message);
     } catch (error) {
       setMessage({ status: 400, info: error.response.data.errors[0].message });
       setAlertOpen(true);

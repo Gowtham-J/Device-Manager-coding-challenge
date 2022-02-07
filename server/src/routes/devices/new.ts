@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { body, validationResult } from "express-validator";
+import { body } from "express-validator";
 import { Device } from "../../models/devices";
 import { BadRequestError } from "../../errors/bad-request-error";
 import { requireAuth, currentUser, validateRequest } from "../../middlewares";

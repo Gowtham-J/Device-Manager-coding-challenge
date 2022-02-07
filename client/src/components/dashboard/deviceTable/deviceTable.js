@@ -1,6 +1,4 @@
-import { filter } from "lodash";
-import { sentenceCase } from "change-case";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // material
 import {
   Card,
@@ -12,22 +10,14 @@ import {
   Container,
   Typography,
   TableContainer,
-  TablePagination,
-  Link,
   Button,
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // components
-import Page from "../../page/Page";
 import Label from "../../page/Label";
-import Scrollbar from "../../page/Scrollbar";
-import {
-  UserListHead,
-  UserListToolbar,
-  UserMoreMenu,
-} from "../../../components/devices";
+import { UserListHead, UserMoreMenu } from "../../../components/devices";
 //
 import Alerts from "../../alerts/alerts";
 

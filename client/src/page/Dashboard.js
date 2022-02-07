@@ -1,10 +1,9 @@
 // material
-import { Box, Grid, Container, Typography } from "@mui/material";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Box, Grid, Container } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 // components
-// import Page from "../components/Page";
-// import { AppNewsUpdate, AppTrafficBySite } from "../components/_dashboard/app";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -14,7 +13,6 @@ import DeviceTable from "../components/dashboard/deviceTable/deviceTable";
 // ----------------------------------------------------------------------
 
 export default function Dashboard() {
-  // const { state: token } = useLocation();
   const token = Cookies.get("jwt");
   const navigate = useNavigate();
   const [user, setUser] = useState({});
@@ -25,7 +23,6 @@ export default function Dashboard() {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": true,
-        // jwt: token,
         Authorization: `Bearer ${token}`,
       },
     };

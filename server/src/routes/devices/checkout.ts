@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import { body, validationResult } from "express-validator";
 import { Device } from "../../models/devices";
 import { BadRequestError } from "../../errors/bad-request-error";
 import { requireAuth, currentUser, validateRequest } from "../../middlewares";
@@ -13,7 +12,6 @@ router.put(
   requireAuth,
   async (req: Request, res: Response) => {
     const device = await Device.findById(req.params.id);
-    // const user = await Device.findOne(req.currentUser!.id);
     const user = await Device.findOne({
       userId: req.currentUser!.id,
       isCheckedOut: false,

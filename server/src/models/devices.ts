@@ -71,8 +71,6 @@ const deviceSchema = new mongoose.Schema(
   }
 );
 
-// deviceSchema.pre("save")
-
 deviceSchema.statics.build = (attr: DeviceAttr) => {
   return new Device(attr);
 };

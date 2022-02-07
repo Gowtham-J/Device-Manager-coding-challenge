@@ -1,6 +1,3 @@
-// import { Icon } from "@iconify/react";
-// import androidFilled from "@iconify/icons-ant-design/android-filled";
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,18 +7,10 @@ import { Button, Card, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 // utils
-// import { fShortenNumber } from "../../../utils/formatNumber";
 import Alerts from "../alerts/alerts";
 import { ReactComponent as DashboardPageImage } from "../../assets/images/dashboardPage.svg";
 
 // ----------------------------------------------------------------------
-
-// const buttonStyle = {
-//   position: "relative",
-//   right: "20px",
-//   top: "275px",
-//   margin: "1rem",
-// };
 
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: "none",
@@ -34,25 +23,7 @@ const RootStyle = styled(Card)(({ theme }) => ({
   justifyContent: "space-between",
 }));
 
-const IconWrapperStyle = styled("div")(({ theme }) => ({
-  margin: "auto",
-  display: "flex",
-  borderRadius: "50%",
-  alignItems: "center",
-  width: theme.spacing(8),
-  height: theme.spacing(8),
-  justifyContent: "center",
-  marginBottom: theme.spacing(3),
-  color: theme.palette.primary.dark,
-  backgroundImage: `linear-gradient(135deg, ${alpha(
-    theme.palette.primary.dark,
-    0
-  )} 0%, ${alpha(theme.palette.primary.dark, 0.24)} 100%)`,
-}));
-
 // ----------------------------------------------------------------------
-
-const TOTAL = 714000;
 
 export default function Intro({ user, devices }) {
   const [open, setOpen] = useState(false);

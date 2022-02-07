@@ -21,9 +21,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useLayoutEffect } from "react";
-import palette from "../../theme/palette";
-import { Link as RouterLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -96,12 +94,6 @@ export default function Navbar({ user }) {
       console.log(error);
     }
   };
-
-  // const options = [
-  //   !validate && { name: "Sign In", to: "/login", onclick: "" },
-  //   !validate && { name: "Sign Up", to: "/signup", onclick: "" },
-  //   validate && { name: "Log Out", to: "/login", onclick: handleLogOut },
-  // ];
 
   return (
     <Box sx={{ display: "flex", pb: 8 }}>

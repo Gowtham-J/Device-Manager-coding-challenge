@@ -1,10 +1,9 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
 import { json } from "body-parser";
 import "express-async-errors";
 import CreateError from "http-errors";
 import cookieSession from "cookie-session";
 import cors from "cors";
-// import * as dotenv from "dotenv";
 import "dotenv/config";
 import bodyParser from "body-parser";
 
@@ -12,7 +11,6 @@ import bodyParser from "body-parser";
 import { NotFoundError } from "./errors/not-found-error";
 import { errorHandler } from "./middlewares/error-handler";
 import cookieParser from "cookie-parser";
-import { AsyncLocalStorage } from "async_hooks";
 
 // Routers path
 import {
@@ -31,7 +29,6 @@ import {
 
 const app = express();
 
-// app.set("trust proxy", true);
 app.use(json());
 app.use(
   cors({
@@ -50,21 +47,10 @@ app.use(
     signed: false,
     httpOnly: false,
     domain: "localhost",
-
     secure: false,
-    // secure: process.env.NODE_ENV !== "test",
-    // domain: window.location.hostname,
     path: "/",
   })
 );
-const asyncLocalStorage = new AsyncLocalStorage();
-app.get("/", (req, res) => {
-  const getStor = asyncLocalStorage.getStore();
-  const store = localStorage.getItem("jwt");
-  console.log(store);
-  // req.session = { jwt: "da" };
-  res.send("hello");
-});
 
 //-------------Router endpoints
 // Auth endpoints

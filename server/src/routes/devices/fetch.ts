@@ -1,8 +1,5 @@
-import express, { Request, Response } from "express";
-import { body, validationResult } from "express-validator";
+import express from "express";
 import { Device } from "../../models/devices";
-import { BadRequestError } from "../../errors/bad-request-error";
-import { requireAuth, currentUser, validateRequest } from "../../middlewares";
 import { dateValidation } from "../../helpers/daysValidation";
 
 const router = express.Router();

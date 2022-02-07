@@ -1,5 +1,3 @@
-// import { Icon } from "@iconify/react";
-// import appleFilled from "@iconify/icons-ant-design/apple-filled";
 // material
 import { alpha, styled } from "@mui/material/styles";
 import { Card, Typography, Box, Grid, Container, Button } from "@mui/material";
@@ -10,11 +8,6 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Alerts from "../components/alerts/alerts";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
-// import { config } from "../helper/HeaderConfigFile";
-// import "moment-timezone";
-// utils
-// import { fShortenNumber } from "../../../utils/formatNumber";
 
 // ----------------------------------------------------------------------
 
@@ -29,38 +22,19 @@ const RootStyle = styled(Card)(({ theme }) => ({
 const TypeStyle = styled(Typography)(({ theme }) => ({
   textTransform: "capitalize",
 }));
-const IconWrapperStyle = styled("div")(({ theme }) => ({
-  margin: "auto",
-  display: "flex",
-  borderRadius: "50%",
-  alignItems: "center",
-  width: theme.spacing(8),
-  height: theme.spacing(8),
-  justifyContent: "center",
-  marginBottom: theme.spacing(3),
-  color: theme.palette.info.dark,
-  backgroundImage: `linear-gradient(135deg, ${alpha(
-    theme.palette.info.dark,
-    0
-  )} 0%, ${alpha(theme.palette.info.dark, 0.24)} 100%)`,
-}));
 
 // ----------------------------------------------------------------------
-
-const TOTAL = 1352831;
 
 export default function AppNewUsers() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const { model, user } = state;
   const [errors, setErrors] = React.useState("");
-  //   const token = sessionStorage.getItem("jwt");
   const [message, setMessage] = React.useState({});
   const [checkIn, setCheckIn] = React.useState(
     model.userId === user.id && model.isCheckedOut === false
   );
   const [open, setOpen] = React.useState(false);
-  // const model = state.user;
   const handleClick = async () => {
     const token = await Cookies.get("jwt");
     const article = { title: "React PUT Request " };
@@ -100,7 +74,6 @@ export default function AppNewUsers() {
       <Grid container spacing={3}>
         <Grid item xs={12} md={6} lg={12}>
           <RootStyle>
-            {/* <Typography variant="h3">{fShortenNumber(TOTAL)}</Typography> */}
             <Typography variant="subtitle1" sx={{ opacity: 0.72 }}>
               Device Manager
             </Typography>
@@ -151,7 +124,6 @@ export default function AppNewUsers() {
                   </Typography>
                 </TypeStyle>
                 <Button
-                  // disabled={model.isCheckedOut ? false : true}
                   sx={{ mt: 2 }}
                   variant="contained"
                   onClick={handleClick}

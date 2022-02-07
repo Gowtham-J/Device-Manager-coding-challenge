@@ -76,7 +76,6 @@ export default function SignUp() {
       navigate("/login");
     } catch (error) {
       setReqError(error.response.data.errors[0].message);
-      // console.log(error.response.data.errors[0].message);
     }
   };
 
