@@ -19,6 +19,16 @@ const RootStyle = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.info.lighter,
   marginTop: "20px",
 }));
+
+const RootStyleInactive = styled(Card)(({ theme }) => ({
+  boxShadow: "none",
+  textAlign: "left",
+  padding: theme.spacing(5, 2),
+  color: theme.palette.error.darker,
+  backgroundColor: theme.palette.error.lighter,
+  marginTop: "20px",
+}));
+
 const TypeStyle = styled(Typography)(({ theme }) => ({
   textTransform: "capitalize",
 }));
@@ -69,26 +79,40 @@ export default function AppNewUsers() {
     navigate("/dashboard/app");
   };
 
+  const header = (
+    <>
+      <Typography variant="subtitle1" sx={{ opacity: 0.72 }}>
+        Device Manager
+      </Typography>
+      <Typography variant="p">
+        Let us help you to view and control the current device
+      </Typography>
+      {model.status === "active" ? null : (
+        <Typography component="p" color="text.secondary" variant="span">
+          Check-in to re-activate the device
+        </Typography>
+      )}
+
+      <Button
+        onClick={handleBack}
+        variant="contained"
+        color="info"
+        sx={{ float: "right" }}
+      >
+        <ArrowBackIcon /> To Dashboard
+      </Button>
+    </>
+  );
+
   return (
     <Container maxWidth="xl">
       <Grid container spacing={3}>
         <Grid item xs={12} md={6} lg={12}>
-          <RootStyle>
-            <Typography variant="subtitle1" sx={{ opacity: 0.72 }}>
-              Device Manager
-            </Typography>
-            <Typography variant="p">
-              Let us help you to view and control the current device
-            </Typography>
-            <Button
-              onClick={handleBack}
-              variant="contained"
-              color="info"
-              sx={{ float: "right" }}
-            >
-              <ArrowBackIcon /> To Dashboard
-            </Button>
-          </RootStyle>
+          {model.status === "active" ? (
+            <RootStyle>{header}</RootStyle>
+          ) : (
+            <RootStyleInactive>{header}</RootStyleInactive>
+          )}
         </Grid>
 
         <Grid item xs={12} md={6} lg={12}>

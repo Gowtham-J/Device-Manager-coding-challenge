@@ -14,7 +14,7 @@ const dateValidation = (respond: any, Device: any) => {
     const Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
     //To display the final no. of days (result)
-    if (Difference_In_Days >= 15) {
+    if (Difference_In_Days >= 7) {
       device?.set({
         status: "in-active",
       });
