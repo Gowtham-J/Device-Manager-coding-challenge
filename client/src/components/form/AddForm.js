@@ -1,3 +1,4 @@
+// modules
 import * as Yup from "yup";
 import { useState } from "react";
 import { useFormik, Form, FormikProvider } from "formik";
@@ -17,12 +18,14 @@ export default function AddForm({ setOpen, setMessage }) {
   const navigate = useNavigate();
   const [regard, setRegard] = useState(false);
 
+  // Validation schema
   const RegisterSchema = Yup.object().shape({
     device: Yup.string().required("Device model is required"),
     os: Yup.string().required("Operating system is required"),
     manufacturer: Yup.string().required("Manufacturer info is required"),
   });
 
+  // using formik library
   const formik = useFormik({
     initialValues: {
       device: "",
@@ -63,6 +66,8 @@ export default function AddForm({ setOpen, setMessage }) {
         });
     },
   });
+
+  // destructuring formic objects
   const {
     errors,
     touched,
@@ -74,7 +79,7 @@ export default function AddForm({ setOpen, setMessage }) {
   } = formik;
 
   const handleNew = () => {
-    setRegard();
+    setRegard(false);
   };
 
   const handleBack = () => {

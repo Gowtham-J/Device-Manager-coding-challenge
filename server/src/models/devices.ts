@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+// An interface that describes the properties
+// that are required to create a new device
 interface DeviceAttr {
   device: string;
   os: string;
@@ -11,10 +13,14 @@ interface DeviceAttr {
   status: string;
 }
 
+// An interface that describes the properties
+// that a device Model has
 interface DeviceModel extends mongoose.Model<DeviceDoc> {
   build(attrs: DeviceAttr): DeviceDoc;
 }
 
+// An interface that describes the properties
+// that a device Document has
 interface DeviceDoc extends mongoose.Document {
   device: string;
   os: string;

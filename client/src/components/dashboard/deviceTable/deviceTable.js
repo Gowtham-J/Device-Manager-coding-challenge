@@ -13,16 +13,16 @@ import {
   Button,
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import axios from "axios";
+// modules
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 // components
-import Label from "../../page/Label";
 import { UserListHead, UserMoreMenu } from "../../../components/devices";
-//
+import Label from "../../page/Label";
 import Alerts from "../../alerts/alerts";
 
 // ----------------------------------------------------------------------
-
+// Table header for device logs
 const TABLE_HEAD = [
   { id: "deviceId", label: "Device ID", alignRight: false },
   { id: "model", label: "Model", alignRight: false },
@@ -35,18 +35,11 @@ const TABLE_HEAD = [
 
 export default function DeviceTable({ devices, user, setDevices }) {
   const navigate = useNavigate();
-  const [order, setOrder] = useState("asc");
-  const [orderBy, setOrderBy] = useState("name");
   const [message, setMessage] = useState({});
   const [alertOpen, setAlertOpen] = useState(false);
 
-  const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
-    setOrderBy(property);
-  };
-
   const handleClick = async (id) => {
+    // fetching devices by Id
     const response = await axios.get(
       `${process.env.REACT_APP_DEVICE_URL}/devices/${id}`
     );
@@ -69,12 +62,7 @@ export default function DeviceTable({ devices, user, setDevices }) {
       <Card>
         <TableContainer sx={{ minWidth: 800 }}>
           <Table>
-            <UserListHead
-              order={order}
-              orderBy={orderBy}
-              headLabel={TABLE_HEAD}
-              onRequestSort={handleRequestSort}
-            />
+            <UserListHead headLabel={TABLE_HEAD} />
             <TableBody>
               {devices.map((row) => {
                 return (

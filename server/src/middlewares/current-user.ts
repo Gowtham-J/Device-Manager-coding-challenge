@@ -18,6 +18,8 @@ declare global {
   }
 }
 
+// authorization from the bearer token in header
+
 export const currentUser = (
   req: Request,
   res: Response,

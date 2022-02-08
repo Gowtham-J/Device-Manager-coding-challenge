@@ -22,6 +22,7 @@ router.post(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
+    // looking for existing user
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       throw new BadRequestError("Invalid credentials");
@@ -46,6 +47,8 @@ router.post(
       },
       process.env.JWT_KEY!
     );
+
+    // to set cookie on the browser
     req.session = {
       jwt: userJwt,
     };

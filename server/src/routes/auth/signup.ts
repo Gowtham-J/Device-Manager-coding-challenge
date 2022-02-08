@@ -22,6 +22,7 @@ router.post(
   async (req: Request, res: Response) => {
     const { email, password, firstName, lastName, number } = req.body;
 
+    // looking for existing user
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {

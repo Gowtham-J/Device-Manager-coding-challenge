@@ -4,6 +4,7 @@ import { NotFoundError } from "../../errors/not-found-error";
 const router = express.Router();
 
 router.get("/devices/:id", async (req: Request, res: Response) => {
+  // fetching existing devices with the particular Id
   const response = await Device.findById(req.params.id);
   if (!response) {
     throw new NotFoundError();

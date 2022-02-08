@@ -1,4 +1,5 @@
 import * as React from "react";
+// material ui
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -6,6 +7,8 @@ import MuiAlert from "@mui/material/Alert";
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
+
+// Re-usable component
 
 export default function Alerts({ open, setOpen, message }) {
   const handleClose = () => {

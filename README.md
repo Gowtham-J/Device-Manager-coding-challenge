@@ -88,9 +88,14 @@ Start the server
 - A user can only check-out or check-in between 9am - 18pm
   ![App Screenshot](client/src/assets/screenshots/can't_chech_out.png)
 
+  - A device which is in-active for more than 7days, Which will be displayed as below
+    ![App Screenshot](client/src/assets/screenshots/in_active.png)
+
 ### Limited device allowance
 
 - The application only allows a limited device up to 10 devices only where cannot be added no more
+- Which will be displayed as below
+  ![App Screenshot](client/src/assets/screenshots/new_device.png)
 
 ### Log Out
 

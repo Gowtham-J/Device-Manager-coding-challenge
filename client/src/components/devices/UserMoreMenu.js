@@ -1,7 +1,9 @@
-import { Icon } from "@iconify/react";
+// modules
 import { useRef, useState } from "react";
-import editFill from "@iconify/icons-eva/edit-fill";
 import { Link as RouterLink } from "react-router-dom";
+// icons
+import { Icon } from "@iconify/react";
+import editFill from "@iconify/icons-eva/edit-fill";
 import trash2Outline from "@iconify/icons-eva/trash-2-outline";
 import moreVerticalFill from "@iconify/icons-eva/more-vertical-fill";
 // material
@@ -12,6 +14,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+// components
 import SpringModal from "../modal/springModel";
 
 // ----------------------------------------------------------------------
@@ -27,8 +30,7 @@ export default function UserMoreMenu({
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
 
-  console.log(deviceId);
-
+  // A function to open the modal
   const handleDelete = () => {
     setOpen(true);
   };

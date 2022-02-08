@@ -1,16 +1,19 @@
-// material
-import { alpha, styled } from "@mui/material/styles";
-import { Card, Typography, Box, Grid, Container, Button } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+// modules
 import React from "react";
 import Moment from "react-moment";
 import axios from "axios";
 import Cookies from "js-cookie";
-import Alerts from "../components/alerts/alerts";
+import { useLocation, useNavigate } from "react-router-dom";
+// material ui
+import { styled } from "@mui/material/styles";
+import { Card, Typography, Box, Grid, Container, Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-// ----------------------------------------------------------------------
+// Components
+import Alerts from "../components/alerts/alerts";
 
+// A styled block from material UI
+// ----------------------------------------------------------------------
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: "none",
   textAlign: "left",
@@ -37,14 +40,17 @@ const TypeStyle = styled(Typography)(({ theme }) => ({
 
 export default function AppNewUsers() {
   const { state } = useLocation();
-  const navigate = useNavigate();
   const { model, user } = state;
-  const [errors, setErrors] = React.useState("");
+  const navigate = useNavigate();
   const [message, setMessage] = React.useState({});
+
+  // A state to check wether the user is checked-in or not
   const [checkIn, setCheckIn] = React.useState(
     model.userId === user.id && model.isCheckedOut === false
   );
   const [open, setOpen] = React.useState(false);
+
+  // function to view the details of the device
   const handleClick = async () => {
     const token = await Cookies.get("jwt");
     const article = { title: "React PUT Request " };
@@ -60,7 +66,6 @@ export default function AppNewUsers() {
         article,
         { headers }
       );
-      setErrors("");
       setCheckIn(!checkIn);
       if (checkIn) {
         setMessage({ status: 200, info: "User successfully checked-Out" });
@@ -71,10 +76,10 @@ export default function AppNewUsers() {
     } catch (error) {
       setMessage({ status: 400, info: error.response.data.errors[0].message });
       setOpen(true);
-      setErrors(error.response.data.errors[0].message);
     }
   };
 
+  // function which directs to a dashboard
   const handleBack = () => {
     navigate("/dashboard/app");
   };

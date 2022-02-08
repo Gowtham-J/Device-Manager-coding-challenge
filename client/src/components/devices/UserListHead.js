@@ -11,6 +11,7 @@ import {
 
 // ----------------------------------------------------------------------
 
+// assigning typeOf the value
 UserListHead.propTypes = {
   order: PropTypes.oneOf(["asc", "desc"]),
   orderBy: PropTypes.string,

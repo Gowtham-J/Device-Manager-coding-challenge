@@ -10,6 +10,7 @@ router.delete(
   currentUser,
   requireAuth,
   async (req: Request, res: Response) => {
+    // removing the existing device where nobody is checked-in with the particular Id
     const device = await Device.findById(req.params.id);
     if (!device) {
       throw new NotFoundError();

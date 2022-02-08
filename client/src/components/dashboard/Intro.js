@@ -1,17 +1,18 @@
+// modules
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // material
-import { alpha, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { Button, Card, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-// utils
+// components
 import Alerts from "../alerts/alerts";
 import { ReactComponent as DashboardPageImage } from "../../assets/images/dashboardPage.svg";
 
 // ----------------------------------------------------------------------
-
+// A styled block from material UI
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: "none",
   textAlign: "left",
@@ -28,7 +29,10 @@ const RootStyle = styled(Card)(({ theme }) => ({
 export default function Intro({ user, devices }) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState({});
+  // used for navigate to another page also can pass data
   const navigate = useNavigate();
+
+  // function which blocks when device count is more than or equal to 10
   const handleAdd = () => {
     if (devices.length >= 10) {
       setMessage({

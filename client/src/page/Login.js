@@ -1,6 +1,13 @@
+// modules
 import * as React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+// material ui
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,10 +21,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -39,6 +42,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+// validation schema
 let schema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required().min(6),
@@ -67,7 +71,6 @@ export default function LogIn() {
         config
       );
       setReqError("");
-      localStorage.setItem("jwt", response.data.jwt);
       document.cookie = `jwt=${response.data.jwt}`;
       navigate("/dashboard/app", { state: response.data.jwt });
     } catch (error) {

@@ -12,15 +12,19 @@ router.put(
   requireAuth,
   async (req: Request, res: Response) => {
     const device = await Device.findById(req.params.id);
+
+    // to validate the user as already checked in with other device
     const user = await Device.findOne({
       userId: req.currentUser!.id,
       isCheckedOut: false,
     });
+
     if (!device) {
       throw new NotFoundError();
     }
     // -------------------------
 
+    // to check wether the user is checking-in between 9am-6pm
     const timePeriod = new Date().getHours();
     if (timePeriod >= 9 && timePeriod <= 17) {
       if (
@@ -29,6 +33,8 @@ router.put(
       ) {
         throw new BadRequestError("This device is checked-in by another user");
       }
+
+      // to validate the user as already checked in with other device
       if (user) {
         if (user?.isCheckedOut === false && device.id !== user.id) {
           throw new BadRequestError(

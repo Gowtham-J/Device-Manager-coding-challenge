@@ -5,7 +5,7 @@ import { BadRequestError } from "../../errors/bad-request-error";
 import { requireAuth, currentUser, validateRequest } from "../../middlewares";
 
 const router = express.Router();
-
+// Route to add new device
 router.post(
   "/devices",
   currentUser,
@@ -30,14 +30,17 @@ router.post(
     const numberOfDevices = await Device.find();
     const existingDevice = await Device.findOne({ device });
 
+    // throwing an error if the number of existing device is equal to or above 10
     if (numberOfDevices.length >= 10) {
       throw new BadRequestError("The garage already filled with 10 devices");
     }
 
+    // every model of the device should be unique
     if (existingDevice) {
       throw new BadRequestError("Device already exists");
     }
 
+    // pre-filling the data of the current user who is adding the device
     const lastCheckedOutDate = new Date();
     const newDevice = Device.build({
       device,

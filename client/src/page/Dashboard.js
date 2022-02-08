@@ -1,23 +1,25 @@
-// material
-import { Box, Grid, Container } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-
-// components
-
+// modules
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
-import Intro from "../components/dashboard/Intro";
+// material
+import { Box, Grid, Container } from "@mui/material";
+
+// components
+import Intro from "../components/dashboard/intro";
 import DeviceTable from "../components/dashboard/deviceTable/deviceTable";
 // ----------------------------------------------------------------------
 
 export default function Dashboard() {
+  // to fetch token from the browser
   const token = Cookies.get("jwt");
   const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [devices, setDevices] = useState([]);
 
+  // Function to check the user is valid and show him the data in the application
   const fetchUser = async () => {
     const config = {
       headers: {
@@ -43,6 +45,8 @@ export default function Dashboard() {
       console.log("from dash board", error);
     }
   };
+
+  // if no valid user the user will be redirected to a login page
   useEffect(() => {
     fetchUser();
     if (!token) {

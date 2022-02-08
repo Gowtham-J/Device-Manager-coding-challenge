@@ -1,11 +1,15 @@
+// modules
 import * as React from "react";
-import { Modal, Card, Box, Typography, Button } from "@mui/material/";
-
 import axios from "axios";
 import Cookies from "js-cookie";
+
+// material ui
+import { Modal, Card, Box, Typography, Button } from "@mui/material/";
+
 // importing SVG
 import { ReactComponent as DeleteSvg } from "../../assets/images/delete.svg";
 
+// A styled block from material UI
 const style = {
   position: "absolute",
   top: "50%",
@@ -28,6 +32,7 @@ export default function SpringModal({
 }) {
   const handleClose = () => setOpen(false);
 
+  // function to delete cookie from the browser
   const handleDelete = async () => {
     const token = await Cookies.get("jwt");
 
@@ -46,11 +51,13 @@ export default function SpringModal({
         `${process.env.REACT_APP_DEVICE_URL}/devices/${deviceId}`,
         config
       );
+      // if device successfully delete's
       if (deleteDevice) {
         setOpen(false);
         const response = await axios.get(
           `${process.env.REACT_APP_DEVICE_URL}/devices`
         );
+        // setting alert message
         setMessage({
           status: 200,
           info: deleteDevice.data.message,
@@ -59,6 +66,7 @@ export default function SpringModal({
         setDevices(response.data);
       }
     } catch (error) {
+      // setting alert message
       setMessage({ status: 400, info: error.response.data.errors[0].message });
       setAlertOpen(true);
     }

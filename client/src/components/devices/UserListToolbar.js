@@ -6,7 +6,7 @@ import { styled } from "@mui/material/styles";
 import { Toolbar, Tooltip, IconButton, Typography } from "@mui/material";
 
 // ----------------------------------------------------------------------
-
+// A styled block from material UI
 const RootStyle = styled(Toolbar)(({ theme }) => ({
   height: 96,
   display: "flex",
@@ -15,7 +15,7 @@ const RootStyle = styled(Toolbar)(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-
+// assigning typeOf the value
 UserListToolbar.propTypes = {
   numSelected: PropTypes.number,
   filterName: PropTypes.string,
@@ -26,7 +26,7 @@ export default function UserListToolbar() {
   return (
     <RootStyle>
       <Typography component="div" variant="h4">
-        Orders
+        Device
       </Typography>
       <Tooltip title="Filter list">
         <IconButton>
