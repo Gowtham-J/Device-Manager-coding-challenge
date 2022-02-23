@@ -4,13 +4,19 @@ import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 
+// importing context from parent page
+import { AlertProvider } from "../../App";
+
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 // Re-usable component
+export default function Alerts() {
+  const { alertMessage, alertOpen } = React.useContext(AlertProvider);
 
-export default function Alerts({ open, setOpen, message }) {
+  const { message, setMessage } = alertMessage;
+  const { open, setOpen } = alertOpen;
   const handleClose = () => {
     setOpen(false);
   };

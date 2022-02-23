@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 // material
 import {
   Card,
@@ -21,6 +21,9 @@ import { UserListHead, UserMoreMenu } from "../../../components/devices";
 import Label from "../../page/Label";
 import Alerts from "../../alerts/alerts";
 
+// importing context from parent page
+import { dashboardPage } from "../../../page/Dashboard";
+
 // ----------------------------------------------------------------------
 // Table header for device logs
 const TABLE_HEAD = [
@@ -33,10 +36,9 @@ const TABLE_HEAD = [
 
 // ----------------------------------------------------------------------
 
-export default function DeviceTable({ devices, user, setDevices }) {
+export default function DeviceTable() {
   const navigate = useNavigate();
-  const [message, setMessage] = useState({});
-  const [alertOpen, setAlertOpen] = useState(false);
+  const { user, devices } = useContext(dashboardPage);
 
   const handleClick = async (id) => {
     // fetching devices by Id
@@ -116,13 +118,7 @@ export default function DeviceTable({ devices, user, setDevices }) {
                     </TableCell>
 
                     <TableCell align="right">
-                      <UserMoreMenu
-                        setAlertOpen={setAlertOpen}
-                        alertOpen={alertOpen}
-                        setMessage={setMessage}
-                        setDevices={setDevices}
-                        deviceId={row.id}
-                      />
+                      <UserMoreMenu deviceId={row.id} />
                     </TableCell>
                   </TableRow>
                 );
@@ -131,7 +127,7 @@ export default function DeviceTable({ devices, user, setDevices }) {
           </Table>
         </TableContainer>
       </Card>
-      <Alerts open={alertOpen} message={message} setOpen={setAlertOpen} />
+      <Alerts />
     </Container>
   );
 }

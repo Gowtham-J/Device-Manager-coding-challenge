@@ -1,5 +1,5 @@
 // modules
-import React from "react";
+import React, { useContext } from "react";
 import Moment from "react-moment";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -11,6 +11,9 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 // Components
 import Alerts from "../components/alerts/alerts";
+
+// adding context
+import { AlertProvider } from "../App";
 
 // A styled block from material UI
 // ----------------------------------------------------------------------
@@ -42,13 +45,18 @@ export default function AppNewUsers() {
   const { state } = useLocation();
   const { model, user } = state;
   const navigate = useNavigate();
-  const [message, setMessage] = React.useState({});
+  // const [message, setMessage] = React.useState({});
+  // context api
+  const { alertMessage, alertOpen } = useContext(AlertProvider);
+  const { open, setOpen } = alertOpen;
+  const { message, setMessage } = alertMessage;
+  // ----
 
   // A state to check wether the user is checked-in or not
   const [checkIn, setCheckIn] = React.useState(
     model.userId === user.id && model.isCheckedOut === false
   );
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
   // function to view the details of the device
   const handleClick = async () => {
@@ -165,7 +173,7 @@ export default function AppNewUsers() {
           </Card>
         </Grid>
       </Grid>
-      <Alerts open={open} message={message} setOpen={setOpen} />
+      <Alerts />
     </Container>
   );
 }

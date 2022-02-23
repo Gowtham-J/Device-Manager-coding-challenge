@@ -1,4 +1,4 @@
-export { fetchDeviceRouter } from "./fetch";
+// export { fetchDeviceRouter } from "./fetch";
 export { fetchByIdDeviceRouter } from "./fetchById";
 export { newDeviceRouter } from "./new";
 export { checkoutRouter } from "./checkout";

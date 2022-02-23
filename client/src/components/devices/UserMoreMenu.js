@@ -17,22 +17,18 @@ import {
 // components
 import SpringModal from "../modal/springModel";
 
+// importing context from parent page
+
 // ----------------------------------------------------------------------
 
-export default function UserMoreMenu({
-  deviceId,
-  setDevices,
-  setAlertOpen,
-  alertOpen,
-  setMessage,
-}) {
+export default function UserMoreMenu({ deviceId }) {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [modelOpen, setModelOpen] = useState(false);
 
   // A function to open the modal
   const handleDelete = () => {
-    setOpen(true);
+    setModelOpen(true);
   };
 
   return (
@@ -75,13 +71,9 @@ export default function UserMoreMenu({
           />
         </MenuItem>
         <SpringModal
-          setDevices={setDevices}
           deviceId={deviceId}
-          open={open}
-          setOpen={setOpen}
-          setAlertOpen={setAlertOpen}
-          alertOpen={alertOpen}
-          setMessage={setMessage}
+          modelOpen={modelOpen}
+          setModelOpen={setModelOpen}
         />
       </Menu>
     </>

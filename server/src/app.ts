@@ -21,12 +21,12 @@ import {
 } from "./routes/auth";
 import {
   newDeviceRouter,
-  fetchDeviceRouter,
+  // fetchDeviceRouter,
   fetchByIdDeviceRouter,
-  checkoutRouter,
+  // checkoutRouter,
   removeDeviceRouter,
 } from "./routes/devices";
-
+import { deviceRouter } from "./routes/deviceRoutes";
 const app = express();
 
 app.use(json());
@@ -59,11 +59,15 @@ app.use(signupRouter);
 app.use(signoutRouter);
 app.use(currentUserRouter);
 
+// =========================
+app.use("/devices", deviceRouter);
+// =========================
+
 //  Devices endpoints
 app.use(newDeviceRouter);
-app.use(fetchDeviceRouter);
+// app.use(fetchDeviceRouter);
 app.use(fetchByIdDeviceRouter);
-app.use(checkoutRouter);
+// app.use(checkoutRouter);
 app.use(removeDeviceRouter);
 
 // ----------  Unknown route handler

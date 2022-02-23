@@ -1,5 +1,5 @@
 // modules
-import * as React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -8,6 +8,10 @@ import { Modal, Card, Box, Typography, Button } from "@mui/material/";
 
 // importing SVG
 import { ReactComponent as DeleteSvg } from "../../assets/images/delete.svg";
+
+// importing context from parent page
+import { dashboardPage } from "../../page/Dashboard";
+import { AlertProvider } from "../../App";
 
 // A styled block from material UI
 const style = {
@@ -22,15 +26,12 @@ const style = {
   borderRadius: 1,
 };
 
-export default function SpringModal({
-  open,
-  setOpen,
-  deviceId,
-  setDevices,
-  setAlertOpen,
-  setMessage,
-}) {
-  const handleClose = () => setOpen(false);
+export default function SpringModal({ deviceId, setModelOpen, modelOpen }) {
+  const { setDevices } = useContext(dashboardPage);
+  const { alertMessage, alertOpen } = useContext(AlertProvider);
+  const [open, setOpen] = alertOpen;
+  const [message, setMessage] = alertMessage;
+  const handleClose = () => setModelOpen(false);
 
   // function to delete cookie from the browser
   const handleDelete = async () => {
@@ -53,29 +54,28 @@ export default function SpringModal({
       );
       // if device successfully delete's
       if (deleteDevice) {
-        setOpen(false);
+        setModelOpen(false);
         const response = await axios.get(
           `${process.env.REACT_APP_DEVICE_URL}/devices`
         );
-        // setting alert message
         setMessage({
           status: 200,
           info: deleteDevice.data.message,
         });
-        setAlertOpen(true);
+        setOpen(true);
         setDevices(response.data);
       }
     } catch (error) {
       // setting alert message
       setMessage({ status: 400, info: error.response.data.errors[0].message });
-      setAlertOpen(true);
+      setOpen(true);
     }
   };
 
   return (
     <div>
       <Modal
-        open={open}
+        open={modelOpen}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

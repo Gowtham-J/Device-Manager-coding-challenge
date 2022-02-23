@@ -9,8 +9,6 @@ import { ReactComponent as NewDeviceSvg } from "../assets/images/newDevice.svg";
 // ----------------------------------------------------------------------
 
 export default function DeviceForm() {
-  const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState({});
   return (
     <Container maxWidth="xl" sx={{ m: 2 }}>
       <Box sx={{ pb: 5 }}>
@@ -25,13 +23,13 @@ export default function DeviceForm() {
             alignItems: "center",
           }}
         >
-          <AddForm setOpen={setOpen} setMessage={setMessage} />
+          <AddForm />
           <NewDeviceSvg
             style={{ alignSelf: "", width: "auto", height: "70%" }}
           />
         </Card>
       </Grid>
-      <Alerts open={open} message={message} setOpen={setOpen} />
+      <Alerts />
     </Container>
   );
 }

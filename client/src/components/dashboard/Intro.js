@@ -1,5 +1,5 @@
 // modules
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 // material
@@ -11,7 +11,12 @@ import AddIcon from "@mui/icons-material/Add";
 import Alerts from "../alerts/alerts";
 import { ReactComponent as DashboardPageImage } from "../../assets/images/dashboardPage.svg";
 
+// importing context from parent page
+import { dashboardPage } from "../../page/Dashboard";
+import { AlertProvider } from "../../App";
+
 // ----------------------------------------------------------------------
+
 // A styled block from material UI
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: "none",
@@ -26,9 +31,12 @@ const RootStyle = styled(Card)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function Intro({ user, devices }) {
-  const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState({});
+export default function Intro() {
+  const { user, devices } = useContext(dashboardPage);
+  const { alertMessage, alertOpen } = useContext(AlertProvider);
+  const { open, setOpen } = alertOpen;
+  const { message, setMessage } = alertMessage;
+
   // used for navigate to another page also can pass data
   const navigate = useNavigate();
 
@@ -75,7 +83,7 @@ export default function Intro({ user, devices }) {
           <AddIcon /> Add Device
         </Button>
       </RootStyle>
-      <Alerts open={open} message={message} setOpen={setOpen} />
+      <Alerts />
     </>
   );
 }

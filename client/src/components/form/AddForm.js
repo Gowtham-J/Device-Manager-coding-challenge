@@ -1,6 +1,6 @@
 // modules
 import * as Yup from "yup";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useFormik, Form, FormikProvider } from "formik";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,10 +12,18 @@ import { LoadingButton } from "@mui/lab";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AddIcon from "@mui/icons-material/Add";
+
+// adding context
+import { AlertProvider } from "../../App";
 // ----------------------------------------------------------------------
 
-export default function AddForm({ setOpen, setMessage }) {
+export default function AddForm() {
   const navigate = useNavigate();
+  // context api
+  const { alertMessage, alertOpen } = useContext(AlertProvider);
+  const { open, setOpen } = alertOpen;
+  const { message, setMessage } = alertMessage;
+  // ----
   const [regard, setRegard] = useState(false);
 
   // Validation schema
