@@ -11,11 +11,8 @@ const fetchDevice = async (req: Request, res: Response) => {
   try {
     const response = await Device.find();
     await dateValidation(response, Device);
-    res.status(200).json(response);
-    // await Device.find().then(async (respond) => {
-    //   await dateValidation(respond, Device);
-    //   res.status(200).json(respond);
-    // });
+    // res.status(200).json(response);
+    res.status(200).json(res.paginatedResults);
   } catch (error) {
     res.send(error);
   }
@@ -39,8 +36,8 @@ const newDevice = async (req: Request, res: Response) => {
   const existingDevice = await Device.findOne({ device });
 
   // throwing an error if the number of existing device is equal to or above 10
-  if (numberOfDevices.length >= 10) {
-    throw new BadRequestError("The garage already filled with 10 devices");
+  if (numberOfDevices.length >= 30) {
+    throw new BadRequestError("The garage already filled with 30 devices");
   }
 
   // every model of the device should be unique

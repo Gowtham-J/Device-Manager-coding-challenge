@@ -19,7 +19,7 @@ const CustomAlert = () => {
         setOpen(false);
       }, 3000);
     }
-  }, [open]);
+  }, [open, setOpen]);
 
   return (
     <div

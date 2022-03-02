@@ -8,9 +8,11 @@ import {
 } from "../../controller/deviceController";
 import { fetchDeviceById } from "../../controller/deviceController";
 import { bodyValidation } from "../../helpers/validations/validation";
+import { paginatedResults } from "../../middlewares/paginatedResults";
+import { Device } from "../../models/devices";
 const router = express.Router();
 
-router.get("/", fetchDevice);
+router.get("/", paginatedResults(Device), fetchDevice);
 router.get("/:id", fetchDeviceById);
 router.post(
   "/",
