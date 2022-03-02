@@ -7,6 +7,8 @@ import GlobalStyles from "./theme/globalStyles";
 
 import "./assets/App.css";
 import Router from "./routes";
+import CustomAlert from "./components/alerts/customAlert/customAlert";
+import Alerts from "./components/alerts/alerts";
 
 export const AlertProvider = createContext();
 
@@ -23,6 +25,8 @@ function App() {
       <ThemeConfig>
         <GlobalStyles />
         <Router />
+        <CustomAlert />
+        {/* <Alerts /> */}
       </ThemeConfig>
     </AlertProvider.Provider>
   );

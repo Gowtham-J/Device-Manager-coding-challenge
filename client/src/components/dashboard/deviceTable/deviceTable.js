@@ -19,7 +19,6 @@ import axios from "axios";
 // components
 import { UserListHead, UserMoreMenu } from "../../../components/devices";
 import Label from "../../page/Label";
-import Alerts from "../../alerts/alerts";
 
 // importing context from parent page
 import { dashboardPage } from "../../../page/Dashboard";
@@ -127,7 +126,6 @@ export default function DeviceTable() {
           </Table>
         </TableContainer>
       </Card>
-      <Alerts />
     </Container>
   );
 }

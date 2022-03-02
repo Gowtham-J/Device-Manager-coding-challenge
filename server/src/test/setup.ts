@@ -20,21 +20,22 @@
 
 // beforeAll(async () => {
 //   process.env.JWT_KEY = "asdf";
-//   mongo = await MongoMemoryServer.create();
+//   //   mongo = await MongoMemoryServer.create();
 //   //   Device.prototype.save = jest.fn().mockImplementation(() => {});
 
-//   const mongoUri = await mongo.getUri();
+//   //   const mongoUri = await mongo.getUri();
 
-//   await mongoose.connect(mongoUri);
+//   //   await mongoose.connect(mongoUri);
+//   await mongoose.connect(process.env.URI!);
 // });
 
-// beforeEach(async () => {
-//   const collections = await mongoose.connection.db.collections();
+// // beforeEach(async () => {
+// //   const collections = await mongoose.connection.db.collections();
 
-//   for (let collection of collections) {
-//     await collection.deleteMany({});
-//   }
-// });
+// //   for (let collection of collections) {
+// //     await collection.deleteMany({});
+// //   }
+// // });
 
 // // global.signin = async () => {
 // //   const email = "test@test.com";

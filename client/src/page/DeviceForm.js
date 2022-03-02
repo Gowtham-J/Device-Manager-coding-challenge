@@ -4,7 +4,6 @@ import { Box, Grid, Container, Typography, Card } from "@mui/material";
 
 // components
 import AddForm from "../components/form/addForm";
-import Alerts from "../components/alerts/alerts";
 import { ReactComponent as NewDeviceSvg } from "../assets/images/newDevice.svg";
 // ----------------------------------------------------------------------
 
@@ -29,7 +28,6 @@ export default function DeviceForm() {
           />
         </Card>
       </Grid>
-      <Alerts />
     </Container>
   );
 }

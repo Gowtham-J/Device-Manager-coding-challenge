@@ -8,7 +8,6 @@ import { Button, Card, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 // components
-import Alerts from "../alerts/alerts";
 import { ReactComponent as DashboardPageImage } from "../../assets/images/dashboardPage.svg";
 
 // importing context from parent page
@@ -83,7 +82,6 @@ export default function Intro() {
           <AddIcon /> Add Device
         </Button>
       </RootStyle>
-      <Alerts />
     </>
   );
 }

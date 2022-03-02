@@ -9,9 +9,6 @@ import { styled } from "@mui/material/styles";
 import { Card, Typography, Box, Grid, Container, Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-// Components
-import Alerts from "../components/alerts/alerts";
-
 // adding context
 import { AlertProvider } from "../App";
 
@@ -173,7 +170,6 @@ export default function AppNewUsers() {
           </Card>
         </Grid>
       </Grid>
-      <Alerts />
     </Container>
   );
 }

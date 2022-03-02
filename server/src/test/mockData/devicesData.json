@@ -1,0 +1,50 @@
+[
+  {
+    "device": "Moto g9",
+    "os": "Android4.3",
+    "manufacturer": "Motorola",
+    "lastCheckedOutDate": "2022-02-22T11:24:54.412Z",
+    "lastCheckedOutBy": "erwin grey",
+    "isCheckedOut": true,
+    "userId": "61fd0ed1bc0226a31b3708ef",
+    "__v": 0,
+    "status": "active",
+    "id": "61f282fb0eb6c960c048be60"
+  },
+  {
+    "device": "poco f1",
+    "os": "android",
+    "manufacturer": "poco",
+    "lastCheckedOutDate": "2022-02-03T13:42:03.576Z",
+    "lastCheckedOutBy": "admin one",
+    "isCheckedOut": true,
+    "userId": "61f0128bce5683f54c8aa7b6",
+    "status": "in-active",
+    "__v": 0,
+    "id": "61fbdbab3f6213b8ba222c68"
+  },
+  {
+    "device": "Redmi 11pro",
+    "os": "android",
+    "manufacturer": "mi",
+    "lastCheckedOutDate": "2022-02-04T11:17:22.547Z",
+    "lastCheckedOutBy": "admin one",
+    "isCheckedOut": false,
+    "userId": "61f0128bce5683f54c8aa7b6",
+    "status": "in-active",
+    "__v": 0,
+    "id": "61fd0b20ca6d4e8ca345d6d1"
+  },
+  {
+    "device": "redmi 5 pro",
+    "os": "andriod ",
+    "manufacturer": "mi",
+    "lastCheckedOutDate": "2022-02-23T07:03:57.645Z",
+    "lastCheckedOutBy": "erwin grey",
+    "isCheckedOut": false,
+    "userId": "61fd0ed1bc0226a31b3708ef",
+    "status": "active",
+    "__v": 0,
+    "id": "6200c4fc98e6cd04df1f1391"
+  }
+]

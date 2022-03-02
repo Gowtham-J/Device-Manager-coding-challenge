@@ -12,7 +12,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 // Re-usable component
-export default function Alerts() {
+const Alerts = () => {
   const { alertMessage, alertOpen } = React.useContext(AlertProvider);
 
   const { message, setMessage } = alertMessage;
@@ -40,4 +40,5 @@ export default function Alerts() {
       </Snackbar>
     </Stack>
   );
-}
+};
+export default Alerts;

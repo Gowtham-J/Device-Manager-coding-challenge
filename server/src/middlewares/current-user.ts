@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { IGetUserAuthInfoRequest } from "../helpers/definitionFIle";
 
 interface UserPayload {
   id: string;
@@ -26,12 +25,12 @@ export const currentUser = (
   next: NextFunction
 ) => {
   const authHeader = req.headers.authorization;
+
   if (!authHeader) {
     return next();
   }
   try {
     const token = authHeader.split(" ")[1];
-
     const payLoad = jwt.verify(token, process.env.JWT_KEY!) as UserPayload;
     req.currentUser = payLoad;
   } catch (error) {

@@ -1,0 +1,14 @@
+[
+  {
+    "device": "Moto g9",
+    "os": "Android4.3",
+    "manufacturer": "Motorola",
+    "lastCheckedOutDate": "2022-02-22T11:24:54.412Z",
+    "lastCheckedOutBy": "erwin grey",
+    "isCheckedOut": true,
+    "userId": "61fd0ed1bc0226a31b3708ef",
+    "__v": 0,
+    "status": "active",
+    "id": "61f282fb0eb6c960c048be60"
+  }
+]

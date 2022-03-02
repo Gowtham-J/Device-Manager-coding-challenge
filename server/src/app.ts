@@ -19,14 +19,7 @@ import {
   signupRouter,
   currentUserRouter,
 } from "./routes/auth";
-import {
-  newDeviceRouter,
-  // fetchDeviceRouter,
-  fetchByIdDeviceRouter,
-  // checkoutRouter,
-  removeDeviceRouter,
-} from "./routes/devices";
-import { deviceRouter } from "./routes/deviceRoutes";
+import { deviceRouter } from "./routes/devices/deviceRoutes";
 const app = express();
 
 app.use(json());
@@ -59,16 +52,14 @@ app.use(signupRouter);
 app.use(signoutRouter);
 app.use(currentUserRouter);
 
-// =========================
+// Device endpoints
 app.use("/devices", deviceRouter);
 // =========================
 
-//  Devices endpoints
-app.use(newDeviceRouter);
-// app.use(fetchDeviceRouter);
-app.use(fetchByIdDeviceRouter);
-// app.use(checkoutRouter);
-app.use(removeDeviceRouter);
+// demo
+app.use("/demo", async (req, res) => {
+  res.status(200).json("success");
+});
 
 // ----------  Unknown route handler
 app.all("*", async (req, res) => {
