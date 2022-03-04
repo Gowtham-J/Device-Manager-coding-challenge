@@ -21,6 +21,11 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [devices, setDevices] = useState([]);
+  const [next, setNext] = useState(false);
+  const [prev, setPrev] = useState(true);
+  const [limit, setLimit] = useState(5);
+  const [page, setPage] = useState(1);
+  // let page = 1;
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -37,14 +42,34 @@ export default function Dashboard() {
       );
       setUser(userData.data.currentUser);
 
+      // const fetchDevice = await axios.get(
+      //   `${process.env.REACT_APP_DEVICE_URL}/devices`,
+      //   config
+      // );
+      // console.log(fetchDevice);
+      // setDevices(fetchDevice.data.result);
+      // if (!fetchDevice.data.previous) setPrev(true);
+      // if (!fetchDevice.data.next) setNext(true);
+
       const fetchDevice = await axios.get(
-        `${process.env.REACT_APP_DEVICE_URL}/devices`,
+        `${process.env.REACT_APP_DEVICE_URL}/devices?page=${page}&limit=${limit}`,
         config
       );
-      setDevices(fetchDevice.data);
+      setDevices(fetchDevice.data.result);
+      if (!fetchDevice.data.previous) setPrev(true);
+      else setPrev(false);
+      if (!fetchDevice.data.next) setNext(true);
+      else setNext(false);
     } catch (error) {
       console.log("from dash board", error);
     }
+  };
+
+  const handleNext = async () => {
+    setPage(page + 1);
+  };
+  const handlePrev = async () => {
+    setPage(page - 1);
   };
 
   // if no valid user the user will be redirected to a login page
@@ -53,13 +78,20 @@ export default function Dashboard() {
     if (!token) {
       navigate("/login");
     }
-  }, [devices.length]);
+  }, [devices]);
   return (
     <dashboardPage.Provider
       value={{
         user,
         devices,
         setDevices,
+        handleNext,
+        handlePrev,
+        next,
+        prev,
+        page,
+        limit,
+        setLimit,
       }}
     >
       <Container maxWidth="xl">

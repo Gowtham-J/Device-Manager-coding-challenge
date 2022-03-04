@@ -11,6 +11,7 @@ import {
   Typography,
   TableContainer,
   Button,
+  TableFooter,
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 // modules
@@ -19,6 +20,7 @@ import axios from "axios";
 // components
 import { UserListHead, UserMoreMenu } from "../../../components/devices";
 import Label from "../../page/Label";
+import FooterTable from "./footerTable";
 
 // importing context from parent page
 import { dashboardPage } from "../../../page/Dashboard";
@@ -123,6 +125,7 @@ export default function DeviceTable() {
                 );
               })}
             </TableBody>
+            <FooterTable />
           </Table>
         </TableContainer>
       </Card>

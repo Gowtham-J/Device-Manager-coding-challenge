@@ -29,7 +29,7 @@ const CustomAlert = () => {
     >
       <span>
         {message.info}
-        <span className="closeBtn" onClick={handleClick}>
+        <span className="close-btn" onClick={handleClick}>
           &times;
         </span>
       </span>

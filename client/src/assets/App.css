@@ -71,7 +71,7 @@ body {
   opacity: 1;
 }
 
-.closeBtn {
+.close-btn {
   margin-left: 15px;
   color: white;
   font-weight: bold;
@@ -82,6 +82,6 @@ body {
   /* transition: 0.3s; */
 }
 
-.closeBtn:hover {
+.close-btn:hover {
   color: rgb(202, 202, 202);
 }

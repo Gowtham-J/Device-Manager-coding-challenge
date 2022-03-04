@@ -9,6 +9,8 @@ import {
   TableSortLabel,
 } from "@mui/material";
 
+// components
+import DeviceLimit from "./../dashboard/deviceTable/deviceLimit";
 // ----------------------------------------------------------------------
 
 // assigning typeOf the value
@@ -56,6 +58,9 @@ export default function UserListHead({
             </TableSortLabel>
           </TableCell>
         ))}
+        <TableCell>
+          <DeviceLimit />
+        </TableCell>
       </TableRow>
     </TableHead>
   );
