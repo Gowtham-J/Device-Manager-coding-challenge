@@ -79,21 +79,21 @@ export default function Dashboard() {
       navigate("/login");
     }
   }, [devices]);
+
+  const props = {
+    user,
+    devices,
+    setDevices,
+    handleNext,
+    handlePrev,
+    next,
+    prev,
+    page,
+    limit,
+    setLimit,
+  };
   return (
-    <dashboardPage.Provider
-      value={{
-        user,
-        devices,
-        setDevices,
-        handleNext,
-        handlePrev,
-        next,
-        prev,
-        page,
-        limit,
-        setLimit,
-      }}
-    >
+    <dashboardPage.Provider value={props}>
       <Container maxWidth="xl">
         <Box sx={{ pb: 5, mt: 2 }}>
           <Grid container spacing={3}>
