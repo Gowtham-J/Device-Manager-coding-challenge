@@ -29,8 +29,8 @@ const style = {
 export default function SpringModal({ deviceId, setModelOpen, modelOpen }) {
   const { setDevices } = useContext(dashboardPage);
   const { alertMessage, alertOpen } = useContext(AlertProvider);
-  const [open, setOpen] = alertOpen;
-  const [message, setMessage] = alertMessage;
+  const { open, setOpen } = alertOpen;
+  const { message, setMessage } = alertMessage;
   const handleClose = () => setModelOpen(false);
 
   // function to delete cookie from the browser
@@ -63,7 +63,7 @@ export default function SpringModal({ deviceId, setModelOpen, modelOpen }) {
           info: deleteDevice.data.message,
         });
         setOpen(true);
-        setDevices(response.data);
+        setDevices(response.data.result);
       }
     } catch (error) {
       // setting alert message

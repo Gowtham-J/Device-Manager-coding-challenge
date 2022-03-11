@@ -1,10 +1,22 @@
 import { Request, Response, NextFunction } from "express";
 
+interface pagResult {
+  next?: {
+    page: number;
+    limit: number;
+  };
+  result: [];
+  previous: {
+    page: number;
+    limit: number;
+  };
+}
+
 // declaring a global object for new response property
 declare global {
   namespace Express {
     interface Response {
-      paginatedResults?: any;
+      paginatedResults?: pagResult;
     }
   }
 }
@@ -40,6 +52,6 @@ export const paginatedResults = (model: any) => {
     } catch (error) {
       res.status(500).json({ message: error });
     }
-    res.paginatedResults = results;
+    res.paginatedResults = results as pagResult;
   };
 };

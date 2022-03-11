@@ -8,14 +8,16 @@ import {
   TableHead,
   TableSortLabel,
 } from "@mui/material";
-
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 // components
 import DeviceLimit from "./../dashboard/deviceTable/deviceLimit";
 // ----------------------------------------------------------------------
 
 // assigning typeOf the value
 UserListHead.propTypes = {
-  order: PropTypes.oneOf(["asc", "desc"]),
+  order: PropTypes.oneOf(["ASC", "DSC"]),
   orderBy: PropTypes.string,
   rowCount: PropTypes.number,
   headLabel: PropTypes.array,
@@ -24,16 +26,7 @@ UserListHead.propTypes = {
   onSelectAllClick: PropTypes.func,
 };
 
-export default function UserListHead({
-  order,
-  orderBy,
-  headLabel,
-  onRequestSort,
-}) {
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
-  };
-
+export default function UserListHead({ headLabel, handleSorting }) {
   return (
     <TableHead>
       <TableRow>
@@ -41,21 +34,16 @@ export default function UserListHead({
           <TableCell
             key={headCell.id}
             align={headCell.alignRight ? "right" : "left"}
-            sortDirection={orderBy === headCell.id ? order : false}
+            onClick={() => handleSorting(headCell.id)}
           >
-            <TableSortLabel
-              hideSortIcon
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <Box sx={{ ...visuallyHidden }}>
-                  {order === "desc" ? "sorted descending" : "sorted ascending"}
-                </Box>
-              ) : null}
-            </TableSortLabel>
+            <TableSortLabel hideSortIcon>{headCell.label}</TableSortLabel>
+            {headCell.sort ? (
+              <CompareArrowsIcon
+                color="disabled"
+                fontSize="string"
+                sx={{ transform: "rotate(90deg)" }}
+              />
+            ) : null}
           </TableCell>
         ))}
         <TableCell>

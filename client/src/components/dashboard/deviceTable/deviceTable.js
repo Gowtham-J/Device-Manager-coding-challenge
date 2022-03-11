@@ -28,18 +28,42 @@ import { dashboardPage } from "../../../page/Dashboard";
 // ----------------------------------------------------------------------
 // Table header for device logs
 const TABLE_HEAD = [
-  { id: "deviceId", label: "Device ID", alignRight: false },
-  { id: "model", label: "Model", alignRight: false },
-  { id: "status", label: "Status", alignRight: false },
-  { id: "lastCheckedInBy", label: "Last CheckedOut By", alignRight: false },
-  { id: "" },
+  { id: "deviceId", label: "Device ID", alignRight: false, sort: false },
+  { id: "device", label: "Model", alignRight: false, sort: true },
+  { id: "deviceStatus", label: "Status", alignRight: false, sort: false },
+  {
+    id: "lastCheckedOutBy",
+    label: "Last CheckedOut By",
+    alignRight: false,
+    sort: true,
+  },
+  { id: "", sort: false },
 ];
 
 // ----------------------------------------------------------------------
 
 export default function DeviceTable() {
   const navigate = useNavigate();
-  const { user, devices } = useContext(dashboardPage);
+  const { user, devices, setDevices } = useContext(dashboardPage);
+  const [order, setOrder] = useState("ASC");
+
+  console.log(devices);
+  const handleSorting = (col) => {
+    if (order === "ASC") {
+      const sorted = [...devices].sort((a, b) =>
+        a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1
+      );
+      setDevices(sorted);
+      setOrder("DSC");
+    }
+    if (order === "DSC") {
+      const sorted = [...devices].sort((a, b) =>
+        a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1
+      );
+      setDevices(sorted);
+      setOrder("ASC");
+    }
+  };
 
   const handleClick = async (id) => {
     // fetching devices by Id
@@ -65,7 +89,10 @@ export default function DeviceTable() {
       <Card>
         <TableContainer sx={{ minWidth: 800 }}>
           <Table>
-            <UserListHead headLabel={TABLE_HEAD} />
+            <UserListHead
+              handleSorting={handleSorting}
+              headLabel={TABLE_HEAD}
+            />
             <TableBody>
               {devices.map((row) => {
                 return (
