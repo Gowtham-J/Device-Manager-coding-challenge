@@ -78,7 +78,7 @@ export default function Dashboard() {
     if (!token) {
       navigate("/login");
     }
-  }, [page, devices.length]);
+  }, [page, devices.length, limit]);
 
   const props = {
     user,

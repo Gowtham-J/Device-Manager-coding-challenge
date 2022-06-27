@@ -56,11 +56,6 @@ app.use(currentUserRouter);
 app.use("/devices", deviceRouter);
 // =========================
 
-// demo
-app.use("/demo", async (req, res) => {
-  res.status(200).json("success");
-});
-
 // ----------  Unknown route handler
 app.all("*", async (req, res) => {
   throw new NotFoundError();
